@@ -14,4 +14,10 @@ $(document).on('turbolinks:load', function() {
     $('#user-orders').fadeToggle();
   });
 
+  '<% Comment.all.each do |comment| %>'
+    $('#comment-<%= comment.id %>').click(function(event) {
+      event.preventDefault();
+      $('#comment-form-<%= comment.id %>').fadeToggle();
+    });
+  '<% end %>'
 });

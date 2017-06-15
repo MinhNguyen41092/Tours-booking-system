@@ -15,6 +15,8 @@
 //= require turbolinks
 //= require bootstrap/modal
 //= require bootstrap-sprockets
+//= require jquery.raty
+//= require ratyrate
 //= require_tree .
 
 $(document).on("ready page:change", function() {

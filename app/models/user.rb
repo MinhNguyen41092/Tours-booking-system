@@ -16,6 +16,7 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: {case_sensitive: false}
   validate :validate_username
   acts_as_liker
+  ratyrate_rater
 
   def self.find_for_database_authentication warden_conditions
     conditions = warden_conditions.dup

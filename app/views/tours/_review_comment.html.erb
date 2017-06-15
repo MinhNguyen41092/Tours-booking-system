@@ -1,4 +1,4 @@
-<div id="review-comment-form-<%= review.id %>", style="display: none">
+<div id="review-comment-form-<%= review.id %>" %>
   <%= simple_form_for [review, Comment.new], remote: true do |f| %>
     <%= f.input :body, as: :text, label: false,
       placeholder: "Write your comment" %>

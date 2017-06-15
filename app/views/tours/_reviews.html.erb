@@ -21,6 +21,7 @@
   <br />
   <p id="likes">Likes: <%= review.likers(User).count %></p>
   <%= link_to "Comment", "#", id: "review-comment-#{review.id}", remote: true %>
+
   <%= render partial: "review_comment", locals: {review: review} %>
   <hr>
 <% end %>

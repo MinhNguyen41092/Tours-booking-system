@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  post '/rate' => 'rater#create', :as => 'rate'
   devise_for :users, controllers: {
     sessions: "sessions",
     registrations: "registrations",
@@ -30,14 +31,17 @@ Rails.application.routes.draw do
       patch "payment"
     end
   end
+
   resources :reviews do
     resources :comments
     post "like",   to: "socializations#like"
     post "unlike", to: "socializations#unlike"
   end
+
   resources :comments do
     resources :comments
   end
+
   resources :categories
   resources :financial_reports
 end

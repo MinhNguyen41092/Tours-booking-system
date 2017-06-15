@@ -423,6 +423,7 @@ a:-webkit-any-link {
   margin-left: 5px;
   padding-right: 5px;
   height: 100%;
+  width: 620px;
   border-right: thin solid #F57B46;
 }
 
@@ -468,12 +469,9 @@ a:-webkit-any-link {
 
 .update-item {
   display: inline-block;
-  height: 100%;
   width: 100px;
-  border-right: thin solid #F57B46;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   margin-left: 10px;
-  position: absolute;
 }
 
 input#line_item_travelers {
@@ -506,7 +504,7 @@ input#line_item_travelers {
 
 .new-order {
   float: right;
-  margin-bottom: 10px;
+  margin-bottom: 0px;
   border-radius: 20px;
 }
 
@@ -725,4 +723,21 @@ hr {
 .search {
   display: inline-block;
   float: right;
+}
+
+.info {
+  display: inline-block;
+}
+
+.rate {
+  display: inline-block;
+  float: right;
+}
+
+.col-sm-10 {
+  margin-top: 50px;
+}
+
+.col-sm-2 {
+  margin-left: 10px;
 }

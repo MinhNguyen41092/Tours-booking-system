@@ -22,6 +22,7 @@
         <%= t "tours.location" %>: <%= @tour.location %>.
           <%= t "tours.duration" %>: <%= @tour.duration %> <%= t "tours.days" %>.
       </div>
+      <div class="rate"><%= rating_for @tour, "rating" %></div>
       <%= image_tag @tour.image_url.tour, class: "tour-image" %>
       <h5><%= @tour.description %></h5>
       <hr>

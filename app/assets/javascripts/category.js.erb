@@ -12,5 +12,10 @@ $(document).on('turbolinks:load', function() {
     $('.cat-collapse').toggleClass('in');
   });
 
-
+  '<% Category.main_categories.each do |cat| %>'
+    $('#subcategory-collapse-<%= cat.id %>').on('click', function(event){
+      event.preventDefault();
+      $('#subcategory-list-<%= cat.id %>.sub-collapse').toggleClass('in');
+    });
+  '<% end %>'
 });

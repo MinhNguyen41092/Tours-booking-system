@@ -5,9 +5,7 @@ class CommentsController < ApplicationController
   def create
     @comment = @commentable.comments.new comment_params
     @comment.user = current_user
-    if @comment.save
-      flash[:success] = t "comments.created"
-    else
+    if !@comment.save
       flash[:danger] = t "comments.create_failed"
     end
     redirect_to :back

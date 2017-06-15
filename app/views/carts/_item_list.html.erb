@@ -6,9 +6,10 @@
     <% end %>
   </div>
   <%= link_to t("carts.checkout"), new_order_path, class: "btn btn-md btn-warning new-order" %>
+  <hr>
   <div class="row">
     <% items.each do |item| %>
-      <div class="col-sm-12 well">
+      <div class="col-sm-9 well">
         <div class="thumb">
           <%= image_tag item.tour.image_url.thumb %>
         </div>
@@ -26,6 +27,12 @@
             <%= t "line_items.adults" %>: <%= item.travelers %>.
           </h6>
         </div>
+        <div class="price-index">
+          <h3><%= number_to_currency item.price,
+            unit: Settings.unit, format: "%u%n", precision: 0 %></h3>
+        </div>
+      </div>
+      <div class="col-sm-2 well">
         <div class="update-item">
           <%= link_to t("line_items.delete"), item, method: :delete,
             data: {confirm: t("confirm.sure")} %>
@@ -34,10 +41,6 @@
             <%= f.number_field :travelers, value: item.travelers %>
             <%= f.submit t("line_items.travelers"), class:"btn btn-xs btn-warning up-item"%>
           <% end %>
-        </div>
-        <div class="price-index">
-          <h3><%= number_to_currency item.price,
-            unit: Settings.unit, format: "%u%n", precision: 0 %></h3>
         </div>
       </div>
     <% end %>
@@ -50,4 +53,5 @@
     <h3><%= t "carts.cost" %>: <%= number_to_currency cart_cost(items),
       unit: Settings.unit, format: "%u%n", precision: 0 %></h3>
   </div>
+  <hr>
 </div>
