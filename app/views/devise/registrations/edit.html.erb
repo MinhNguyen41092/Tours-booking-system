@@ -13,18 +13,26 @@
 
         <%= f.input :full_name, label: false, placeholder: t("user_form.full_name") %>
 
+        <% if current_user.avatar.nil? %>
+          <%= image_tag current_user.avatar.url  %>
+          <%= f.input :remove_avatar, as: :boolean %>
+        <% end %>
+        <%= f.input :avatar, as: :file %>
+
         <i>(<%= t "user_form.leave_blank" %>)</i><br />
-        <%= f.input :password, label: false, placeholder: t("user_form.password"),
-          autocomplete: "off" %>
         <% if @minimum_password_length %>
           <em>(<%= @minimum_password_length %> <%= t "user_form.chars_min" %>)</em>
         <% end %><br />
+        <%= f.input :password, label: false, placeholder: t("user_form.password"),
+          autocomplete: "off" %>
 
         <%= f.input :password_confirmation, label: false,
           placeholder: t("user_form.pass_confirm"), autocomplete: "off" %>
 
-        <i>(<%= t "user_form.current_pass" %>)</i><br />
-        <%= f.input :current_password, autocomplete: "off" %>
+        <% if current_user.identity.nil? %>
+          <i>(<%= t "user_form.current_pass" %>)</i><br />
+          <%= f.input :current_password, autocomplete: "off" %>
+        <% end %>
 
         <%= f.button :submit, class: "btn btn-info btn-block" %>
       <% end %>

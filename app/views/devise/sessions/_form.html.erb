@@ -18,7 +18,21 @@
       <% end %>
     </div>
     <div class="modal-footer">
-      <%= render "devise/shared/links" %>
+      <%= link_to omniauth_authorize_path(resource_name, :facebook),
+        class: "btn btn-block btn-social btn-facebook" do %>
+        <span class="fa fa-facebook"></span><%= t "users.login_fb" %>
+      <% end %>
+      <%= link_to omniauth_authorize_path(resource_name, :twitter),
+        class: "btn btn-block btn-social btn-twitter" do %>
+        <span class="fa fa-twitter"></span><%= t "users.login_twt" %>
+      <% end %>
+      <%= link_to omniauth_authorize_path(resource_name, :google_oauth2),
+        class: "btn btn-block btn-social btn-google" do %>
+        <span class="fa fa-google"></span><%= t "users.login_google" %>
+      <% end %>
+      <% if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+        <%= link_to t("users.forgot_pass"), new_password_path(resource_name) %><br />
+      <% end %>
     </div>
   </div>
 </div>

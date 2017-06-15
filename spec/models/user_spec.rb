@@ -6,7 +6,7 @@ RSpec.describe User, type: :model do
   end
 
   describe "relationships" do
-    it {should have_one(:identity)}
+    it {should have_one(:identity).dependent(:destroy)}
     it {should have_one(:cart)}
     it {should have_many(:comments)}
     it {should have_many(:orders)}
