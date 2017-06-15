@@ -1,0 +1,5 @@
+<h1 class="text-center">Your cart</h1>
+
+<div id="items">
+  <%= render partial: "item_list", locals: {items: @cart.line_items} %>
+</div>

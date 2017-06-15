@@ -1,0 +1,78 @@
+<nav id="sidebar" class="active">
+  <div class="sidebar-header">
+    <h2>Framtour10</h2>
+  </div>
+
+  <ul class="side-list">
+    <h4>Components</h4>
+    <% if user_signed_in? %>
+      <% if current_user.is_admin %>
+        <li class="active">
+          <a href="#" data-toggle="collapse" id="adminList" aria-expanded="true">
+            Admin<span class="caret" aria-hidden="true"></span>
+          </a>
+
+          <ul class="admin-list collapse" id="adminSubmenu"
+            aria-expanded="false">
+            <li>
+              <%= link_to "Reviews", reviews_path %>
+            </li>
+            <li>
+              <%= link_to "Create tours", new_tour_path %>
+            </li>
+            <li>
+              <%= link_to t("categories.new"), new_category_path %>
+            </li>
+            <li>
+              <%= link_to "Manage Orders", orders_path %>
+            </li>
+            <li>
+              <%= link_to "Manage Categories", categories_path %>
+            </li>
+            <li>
+              <%= link_to "Manage Users", users_path %>
+            </li>
+            <li>
+              <%= link_to "Manage Financial Reports", financial_reports_path %>
+            </li>
+          </ul>
+
+        </li>
+      <% end %>
+    <% end %>
+    <li class="active">
+      <a href="#" data-toggle="collapse" id="category-collapse" aria-expanded="true">
+        Categories<span class="caret" aria-hidden="true"></span>
+      </a>
+
+      <ul class="category-list cat-collapse" aria-expanded="false">
+        <% Category.main_categories.each do |cat| %>
+          <% if !cat.sub_categories.blank? %>
+            <li>
+              <%= link_to cat.name, category_path(cat), class: "main-cat" %><a class="drop" href="#" data-toggle="sub-collapse"
+                id="subcategory-collapse-<%=cat.id%>" aria-expanded="true">
+                <span class="caret" aria-hidden="true"></span>
+              </a>
+
+              <ul class="sub sub-collapse" id="subcategory-list-<%= cat.id %>" aria-expanded="false">
+                <% cat.sub_categories.each do |sub_cat| %>
+                  <li>
+                    <%= link_to sub_cat.name, category_path(sub_cat) %>
+                  </li>
+                <% end %>
+              </ul>
+            </li>
+          <% else %>
+            <li><%= link_to cat.name, category_path(cat) %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </li>
+    <li class="active">
+      <%= link_to "Tours", tours_path %>
+    </li>
+    <li class="active">
+      <%= link_to "Contact", "#" %>
+    </li>
+  </ul>
+</nav>

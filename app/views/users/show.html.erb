@@ -1,0 +1,80 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="well">
+        <div class="avatar"><%= image_tag @user.avatar.avatar %></div>
+        <h3 class="text-center"><%= @user.username %></h3>
+        <div class="user-info">
+          <h5>Full name: <%= @user.full_name %></h5>
+          <h5>Email: <%= @user.email %></h5>
+        </div>
+        <hr>
+
+        <% if @user == current_user %>
+          <h3>
+            <div class="my-reviews">
+              <%= link_to "#" do %>
+                <span class="glyphicon glyphicon-menu-right"
+                  aria-hidden="true"></span>My reviews
+              <% end %>
+            </div>
+          </h3>
+          <div id="user-reviews">
+            <div class="review-pag"><%= paginate @reviews %></div>
+            <% @reviews.each do |review| %>
+              <div class="col-sm-12 well">
+                <div class="review-user">
+                  <h5><%= review.user.username %></h5><br/>
+                  <%= image_tag review.user.avatar.review %>
+                </div>
+                <div class="review-each">
+                  <strong><%= review.title %></strong><br/>
+                  <%= review.body %><br/>
+                  <%= review.created_at %>. Status:
+                  <% if review.is_accepted %>
+                    <strong>Published</strong>
+                  <% else %>
+                    <strong>Pending</strong>
+                  <% end %>
+                </div>
+                <div class="actions">
+                  <%= link_to review_path(review), method: :delete,
+                    data: {confirm: t("confirm.sure")}, title: t("reviews.delete"),
+                    'data-toggle': 'tooltip', 'data-placement': 'top', remote: true do %>
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+
+          <h3>
+            <div class="my-orders">
+              <%= link_to "#" do %>
+                <span class="glyphicon glyphicon-menu-right"
+                  aria-hidden="true"></span>My orders
+              <% end %>
+            </div>
+          </h3>
+          <div id="user-orders">
+            <% @user.orders.newest.each do |order| %>
+              <div class="col-sm-8">
+                <div class="well">
+                  <%= link_to order.created_at, order_path(order) %>
+                  Status: <%= order.status %>
+                  <% if order.status == "pending" %>
+                    <%= link_to "Checkout", payment_order_path(order), method: :patch,
+                      class: "btn btn-sm btn-info checkout" %>
+                  <% end %>
+                  <%= link_to "Cancel", order_path(order, status: :canceled), method: :patch,
+                    class: "btn btn-sm btn-danger cancel-order" %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</div>

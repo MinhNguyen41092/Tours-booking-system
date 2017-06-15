@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="panel panel-info pass-reset">
+    <div class="panel-heading"><%= t "users.forgot_pass" %></div>
+    <div class="panel-body ">
+      <%= simple_form_for resource, as: resource_name,
+        url: password_path(resource_name), html: { method: :post } do |f| %>
+        <%= f.error_notification %>
+
+        <%= f.input :email, required: true, autofocus: true %>
+
+        <%= f.button :submit, "Send me reset password instructions",
+          class: "btn btn-info btn-block" %>
+      <% end %>
+    </div>
+  </div>
+</div>

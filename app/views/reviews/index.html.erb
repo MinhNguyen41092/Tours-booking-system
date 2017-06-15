@@ -1,0 +1,42 @@
+<div class="container">
+  <h3 class="text-center">All reviews</h3>
+  <div class="review-pag"><%= paginate @reviews %></div>
+  <div class="row" id="review-list">
+    <% @reviews.each do |review| %>
+      <%= render partial: "shared/errors", locals: {obj: review} %>
+      <div class="col-sm-11 well">
+        <div class="review-user">
+          <h5><%= review.user.username %></h5><br/>
+          <%= image_tag review.user.avatar.review %>
+        </div>
+        <div class="review-each">
+          <strong><%= review.title %></strong><br/>
+          <%= review.body %><br/>
+          <%= review.created_at %>. Status:
+          <% if review.is_accepted %>
+            <strong>Published</strong>
+          <% else %>
+            <strong>Pending</strong>
+          <% end %>
+        </div>
+        <div class="actions">
+          <% if review.is_accepted %>
+            <%= link_to "Unpublish", review_path(review, is_accepted: false),
+              method: :put, data: {confirm: t("confirm.sure")}, remote: true,
+              class: "btn btn-default set-review" %>
+          <% else %>
+            <%= link_to "Publish", review_path(review, is_accepted: true),
+              method: :put, data: {confirm: t("confirm.sure")}, remote: true,
+              class: "btn btn-default set-review" %>
+          <% end %>
+          <%= link_to review_path(review), method: :delete,
+            data: {confirm: t("confirm.sure")}, title: t("reviews.delete"),
+            'data-toggle': 'tooltip', 'data-placement': 'top', remote: true do %>
+            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="review-pag"><%= paginate @reviews %></div>
+</div>

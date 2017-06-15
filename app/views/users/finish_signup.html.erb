@@ -1,0 +1,20 @@
+<div id="add-email" class="container">
+  <div class="panel panel-info pass-reset">
+    <div class="panel-heading"><h3><%= t "users.add_email" %></h3></div>
+      <div class="panel-body ">
+        <%= form_for(current_user, as: "user", url: finish_signup_path(current_user),
+          html: { role: "form"}) do |f| %>
+          <div class="form-group">
+            <%= f.label :email %>
+            <div class="controls">
+              <%= f.text_field :email, autofocus: true, class: "form-control input-lg", placeholder: "Example: email@me.com" %>
+              <p class="help-block"><%= t "users.no_spam" %></p>
+            </div>
+          </div>
+          <div class="actions">
+            <%= f.submit t("users.continue"), class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      </div>
+  </div>
+</div>

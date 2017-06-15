@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="order-info">
+  <h4>Tour info</h4>
+    <ul>
+      <li>Email: <%= @order.email %></li>
+      <li>Phone number: <%= @order.phone_number %>
+      <li>Status: <%= @order.status %></li>
+      <li>Total cost: $<%= @order.total_cost %></li>
+      <li>Submited at: <%= @order.created_at %></li>
+    </ul>
+  </div>
+  <div class="order-tour">
+    <h4>Booked tours</h4>
+    <div class="row">
+      <% @order.line_items.each do |item| %>
+        <div class="col-sm-9">
+          <div class="thumb">
+            <%= image_tag item.tour.image_url.thumb %>
+          </div>
+          <div class="tour-sum">
+            <%= link_to item.tour.name, tour_path(item.tour) %><br />
+            <% if item.tour.description.length > 55 %>
+              <h6><%= truncate item.tour.description, length: 55 %>
+              <%= link_to t("read_more"), tour_path(item.tour) %></h6>
+            <% else %>
+              <h6><%= item.tour.description %></h6>
+            <% end %>
+            <h6 class="du-lo">
+              <%= t "tours.duration" %>: <%= item.tour.duration %> <%= t "tours.days" %>.<br/>
+              <%= t "tours.location" %>: <%= item.tour.location %>.
+            </h6>
+            <h3 class="price-index">
+              <%= number_to_currency item.tour.price,
+                unit: Settings.unit, format: "%u%n", precision: 0 %>
+            </h3>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

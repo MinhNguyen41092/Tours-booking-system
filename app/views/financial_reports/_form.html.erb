@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="col-sm-6 col-sm-offset-3">
+    <%= simple_form_for @financial_report do |f| %>
+      <%= f.error_notification %>
+
+      <%= f.input :date, as: :date %>
+
+      <%= f.input :cost, as: :decimal %>
+
+      <%= f.input :revenue, as: :decimal %>
+
+      <%= f.submit @financial_report.new_record? ? t("reports.new") : t("reports.update"),
+        class: "btn btn-primary btn-block cat-submit" %>
+    <% end %>
+  </div>
+</div>

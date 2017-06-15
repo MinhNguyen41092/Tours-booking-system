@@ -1,0 +1,29 @@
+$(document).on('turbolinks:load', function() {
+  $('#review-link').click(function(event) {
+    event.preventDefault();
+    $('#review-form').fadeToggle();
+  });
+
+  $('.my-reviews').click(function(event) {
+    event.preventDefault();
+    $('#user-reviews').fadeToggle();
+  });
+
+  $('.my-orders').click(function(event) {
+    event.preventDefault();
+    $('#user-orders').fadeToggle();
+  });
+  '<% Review.all.each do |review| %>'
+    $('#review-comment-<%= review.id %>').click(function(event) {
+      event.preventDefault();
+      $('#review-comment-form-<%= review.id %>').fadeToggle();
+    });
+  '<% end %>'
+
+  '<% Comment.all.each do |comment| %>'
+    $('#comment-<%= comment.id %>').click(function(event) {
+      $('#comment-form-<%= comment.id %>').fadeToggle();
+      return false;
+    });
+  '<% end %>'
+});

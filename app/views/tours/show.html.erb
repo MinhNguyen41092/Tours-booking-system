@@ -1,0 +1,73 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-9 tour-show">
+      <% if user_signed_in? %>
+        <% if current_user.is_admin %>
+          <div class="actions">
+            <%= link_to edit_tour_path(@tour), title: t("tours.edit"),
+            'data-toggle': 'tooltip', 'data-placement': 'top' do %>
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            <% end %>
+            <%= link_to tour_path(@tour), method: :delete,
+              data: {confirm: t("confirm.sure")}, title: t("tours.delete"),
+              'data-toggle': 'tooltip', 'data-placement': 'top' do %>
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+
+      <h1 class="text-center"><%= @tour.name %></h1>
+      <div class="info">
+        <%= t "tours.location" %>: <%= @tour.location %>.
+          <%= t "tours.duration" %>: <%= @tour.duration %> <%= t "tours.days" %>.
+      </div>
+      <%= image_tag @tour.image_url.tour, class: "tour-image" %>
+      <h5><%= @tour.description %></h5>
+      <hr>
+      <h4><%= link_to "Write a review", "#", id: "review-link", remote: true %></h4>
+      <div id="review-form" class="review">
+        <%= simple_form_for @review do |f| %>
+          <%= f.error_notification %>
+          <%= f.hidden_field :tour_id, value: @tour.id %>
+          <%= f.input :title, label: false, placeholder: "Review title" %>
+          <%= f.input :body, label: false, placeholder: "Your review (less than 400 words)" %>
+          <%= f.button :submit, "Submit review", class: "btn btn-primary" %>
+        <% end %>
+      </div>
+      <hr>
+      <h4 class="reviews"><span class="glyphicon glyphicon-pencil"
+        aria-hidden="true"></span>Customer reviews</h4>
+      <hr>
+      <div id="wrap">
+        <% @reviews.each do |review| %>
+          <div class="review-wrap">
+            <div class="review-user">
+              <h5><%= review.user.username %></h5><br/>
+              <%= image_tag review.user.avatar.review %>
+            </div>
+            <div class="review-each">
+              <strong><%= review.title %></strong><br/>
+              <%= review.body %>
+            </div>
+          </div>
+          <%= link_to "Comment", "#", id: "review-comment-#{review.id}", remote: true %>
+          <%= render partial: "review_comment", locals: {review: review} %>
+          <hr>
+        <% end %>
+        <div class="review-pag"><%= paginate @reviews %></div>
+      </div>
+    </div>
+    <div class="col-sm-3 right">
+      <div class="price">
+        <h3><%= number_to_currency @tour.price,
+          unit: Settings.unit, format: "%u%n", precision: 0 %></h3>
+        <div class="add-cart">
+          <%= link_to line_items_path(tour_id: @tour.id), method: :post, class: "btn btn-warning" do %>
+            <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span> "Add to cart"
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

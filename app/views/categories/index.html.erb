@@ -1,0 +1,61 @@
+<div class="container">
+  <h3>All Categories</h3>
+  <hr>
+  <% @categories.each do |cat| %>
+    <div class="row">
+      <% if !cat.sub_categories.blank? %>
+        <div class="col-sm-6 well main_cat">
+          <%= link_to cat.name, category_path(cat) %>
+          <div class="cat-actions">
+            <%= link_to edit_category_path(cat), title: t("categories.edit"),
+              'data-toggle': 'tooltip', 'data-placement': 'top' do %>
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            <% end %>
+            <%= link_to cat, method: :delete,
+              data: {confirm: t("confirm.sure")}, title: t("categories.delete"),
+              'data-toggle': 'tooltip', 'data-placement': 'top' do %>
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            <% end %>
+          </div>
+        </div>
+        <div class="container">
+          <div class="row">
+            <% cat.sub_categories.each do |sub_cat| %>
+              <div class="col-sm-6 well sub_cat_each">
+                <%= link_to sub_cat.name, category_path(sub_cat) %>
+                <div class="cat-actions">
+                  <%= link_to edit_category_path(cat), title: t("categories.edit"),
+                    'data-toggle': 'tooltip', 'data-placement': 'top' do %>
+                    <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+                  <% end %>
+                  <%= link_to cat, method: :delete,
+                    data: {confirm: t("confirm.sure")}, title: t("categories.delete"),
+                    'data-toggle': 'tooltip', 'data-placement': 'top' do %>
+                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      <% else %>
+        <div class="col-sm-6 well main_cat">
+          <%= link_to cat.name, category_path(cat) %>
+
+          <div class="cat-actions">
+            <%= link_to edit_category_path(cat), title: t("categories.edit"),
+              'data-toggle': 'tooltip', 'data-placement': 'top' do %>
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            <% end %>
+            <%= link_to cat, method: :delete,
+              data: {confirm: t("confirm.sure")}, title: t("categories.delete"),
+              'data-toggle': 'tooltip', 'data-placement': 'top' do %>
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <hr>
+</div>
