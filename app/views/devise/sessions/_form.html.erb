@@ -1,0 +1,41 @@
+<div class="modal-dialog modal-sm">
+  <div class="modal-content">
+    <div class="modal-header text-center"><h3><%= t "user_form.wb" %></h3></div>
+
+    <div class="modal-body ">
+
+      <div id="login-errors"></div>
+
+      <%= simple_form_for resource, as: resource_name,
+        url: session_path(resource_name), remote: true, html: {id: "login-form"} do |f| %>
+
+        <%= f.input :login, label: false, placeholder: t("user_form.email_username"),
+          autofocus: true %>
+
+        <%= f.input :password, label: false, placeholder: t("user_form.password"),
+          autocomplete: "off" %>
+
+        <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
+
+        <%= f.button :submit, t("user_form.login"), class: "btn btn-info btn-block" %>
+      <% end %>
+    </div>
+    <div class="modal-footer">
+      <%= link_to omniauth_authorize_path(resource_name, :facebook),
+        class: "btn btn-block btn-social btn-facebook" do %>
+        <span class="fa fa-facebook"></span><%= t "users.login_fb" %>
+      <% end %>
+      <%= link_to omniauth_authorize_path(resource_name, :twitter),
+        class: "btn btn-block btn-social btn-twitter" do %>
+        <span class="fa fa-twitter"></span><%= t "users.login_twt" %>
+      <% end %>
+      <%= link_to omniauth_authorize_path(resource_name, :google_oauth2),
+        class: "btn btn-block btn-social btn-google" do %>
+        <span class="fa fa-google"></span><%= t "users.login_google" %>
+      <% end %>
+      <% if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+        <%= link_to t("users.forgot_pass"), new_password_path(resource_name) %><br />
+      <% end %>
+    </div>
+  </div>
+</div>

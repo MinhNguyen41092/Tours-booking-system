@@ -1,0 +1,4 @@
+items_per_pages: 6
+unit: $
+max_name: 150
+max_text: 300

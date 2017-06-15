@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <% @reviews.each do |review| %>
+      <div class="col-sm-11 well">
+        <div class="review-user">
+          <h5><%= review.user.username %></h5><br/>
+          <%= image_tag review.user.avatar.review %>
+        </div>
+        <div class="review-each">
+          <strong><%= review.title %></strong><br/>
+          <%= review.body %><br/>
+          <%= review.created_at %>. Status:
+          <% if review.is_accepted %>
+            <strong>Published</strong>
+          <% else %>
+            <strong>Pending</strong>
+          <% end %>
+        </div>
+        <div class="actions">
+          <% if review.is_accepted %>
+            <%= link_to "Unpublish", review_path(review, is_accepted: false),
+              method: :put, data: {confirm: t("confirm.sure")},
+              class: "btn btn-default set-review" %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

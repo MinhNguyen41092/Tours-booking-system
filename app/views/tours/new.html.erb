@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="panel panel-primary new-tour">
+    <div class="panel-heading"><h3><%= t "tours.new" %></h3></div>
+    <div class="panel-body ">
+      <%= simple_form_for @tour do |f| %>
+        <%= f.error_notification %>
+
+        <%= f.input :name, placeholder: t("tours.name"),
+          autofocus: true %>
+
+        <%= f.input :description, as: :text, placeholder: t("tours.description") %>
+
+        <%= f.input :price, placeholder: t("tours.price") %>
+
+        <%= f.input :image_url, label: t("tours.image"), as: :file %>
+        <%= f.hidden_field :image_url_cache %>
+
+        <%= f.input :duration, placeholder: t("tours.duration") %>
+
+        <%= f.input :location, placeholder: t("tours.location") %>
+
+        <%= f.button :submit, t("tours.new"), class: "btn btn-primary btn-block" %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,30 @@
+<div class="container">
+  <div class="panel panel-primary new-tour">
+    <div class="panel-heading"><h3><%= t "tours.edit" %></h3></div>
+    <div class="panel-body ">
+      <%= simple_form_for @tour do |f| %>
+        <%= f.error_notification %>
+
+        <%= f.input :name, label: false, placeholder: t("tours.name"),
+          autofocus: true %>
+
+        <%= f.input :description, as: :text, label: false, placeholder: t("tours.description") %>
+
+        <%= f.input :price, label: false, placeholder: t("tours.price") %>
+
+        <% if @tour.image_url %>
+          <%= image_tag current_user.avatar.url  %>
+          <%= f.input :remove_image_url, as: :boolean %>
+        <% end %>
+        <%= f.input :image_url, label: t("tours.image"), as: :file %>
+        <%= f.hidden_field :image_url_cache %>
+
+        <%= f.input :duration, label: false, placeholder: t("tours.duration") %>
+
+        <%= f.input :location, label: false, placeholder: t("tours.location") %>
+
+        <%= f.button :submit, t("tours.edit"), class: "btn btn-primary btn-block" %>
+      <% end %>
+    </div>
+  </div>
+</div>
