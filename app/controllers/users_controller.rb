@@ -1,32 +1,24 @@
 class UsersController < ApplicationController
-  before_action :load_user, except: [:index, :new, :create]
+  before_action :load_user, only: [:show, :destroy]
   before_action :authenticate_user!
   before_action :verify_admin, only: :index
+  before_action :correct_user, only: :finish_signup
 
   def index
     @users = User.all.page(params[:page])
       .per Settings.items_per_pages
   end
 
-  def show
-  end
-
-  def update
-    if @user.update user_params
-      sign_in @user
-      redirect_to @user, notice: t("users.update_success")
-    else
-      render :edit
-    end
-  end
+  def show; end
 
   def finish_signup
     if request.patch? && params[:user]
       if @user.update user_params
-        sign_in(@user, bypass: true)
+        sign_in @user, bypass: true
         redirect_to @user, notice: t("users.update_success")
       else
         flash[:danger] = t "users.update_failed"
+        render :finish_signup
       end
     end
   end
@@ -41,11 +33,20 @@ class UsersController < ApplicationController
   end
 
   private
+
   def load_user
     @user = User.find_by id: params[:id]
     return if @user
     flash[:danger] = t "users.no_user"
     redirect_to root_path
+  end
+
+  def correct_user
+    @user = User.find_by id: params[:id]
+    if @user != current_user
+      flash[:danger] = t "users.not_correct_user"
+      redirect_to root_path
+    end
   end
 
   def user_params
