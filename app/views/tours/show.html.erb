@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2">
+    </div>
+    <div class="col-sm-7">
+      <% if user_signed_in? %>
+        <% if current_user.is_admin %>
+          <div class="actions">
+            <%= link_to edit_tour_path(@tour), title: t("tours.edit"),
+            'data-toggle': 'tooltip', 'data-placement': 'top' do %>
+              <span class="glyphicon glyphicon-edit" aria-hidden="true"></span>
+            <% end %>
+            <%= link_to tour_path(@tour), method: :delete,
+              data: {confirm: t("confirm.sure")}, title: t("tours.delete"),
+              'data-toggle': 'tooltip', 'data-placement': 'top' do %>
+              <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+
+      <h1 class="text-center"><%= @tour.name %></h1>
+      <div class="info">
+        <%= t "tours.location" %>: <%= @tour.location %>.
+          <%= t "tours.duration" %>: <%= @tour.duration %> <%= t "tours.days" %>.
+      </div>
+      <%= image_tag @tour.image_url.tour, class: "tour-image" %>
+      <h5><%= @tour.description %></h5>
+    </div>
+    <div class="col-sm-3 right">
+      <div class="price"><h3><%= number_to_currency @tour.price,
+        unit: Settings.unit, format: "%u%n", precision: 0 %></h3></div>
+    </div>
+  </div>
+</div>

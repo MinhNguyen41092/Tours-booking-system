@@ -1,1 +1,6 @@
-items_per_pages: 3
+items_per_pages: 6
+unit: $
+min_tour_name: 10
+max_tour_name: 150
+min_tour_des: 150
+max_tour_des: 500

@@ -1,0 +1,34 @@
+<div class="container tour-index">
+  <h1 class="text-center"><%= t "tours.all" %></h1>
+  <div class="pag"><%= paginate @tours %></div>
+  <div class="row">
+    <div class="col-sm-3">
+    </div>
+    <div class="col-sm-9">
+      <% @tours.each do |tour| %>
+        <div class="col-sm-12 well">
+          <div class="thumb">
+            <%= image_tag tour.image_url.thumb %>
+          </div>
+          <div class="tour-sum">
+            <%= link_to tour.name, tour_path(tour) %><br />
+            <% if tour.description.length > 55 %>
+              <h6><%= truncate tour.description, length: 55 %>
+              <%= link_to t("tours.read_more"), tour_path(tour) %></h6>
+            <% else %>
+              <h6><%= tour.description %></h6>
+            <% end %>
+            <h6 class="du-lo">
+              <%= t "tours.duration" %>: <%= tour.duration %> <%= t "tours.days" %>.<br/>
+              <%= t "tours.location" %>: <%= tour.location %>.
+            </h6>
+            <h3 class="price-index">
+              <%= number_to_currency tour.price,
+                unit: Settings.unit, format: "%u%n", precision: 0 %>
+            </h3>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

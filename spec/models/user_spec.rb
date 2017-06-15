@@ -21,7 +21,7 @@ RSpec.describe User, type: :model do
     end
 
     it "should not allow TEMP_EMAIL_REGEX to email when update" do
-      expect(@user.update(email: "change@me-minh")).to be(false)
+      expect(@user.update(email: "change@me-minh")).to be false
     end
 
     it {should validate_presence_of(:username)}
@@ -30,16 +30,16 @@ RSpec.describe User, type: :model do
 
   describe "login by username" do
     it "can find user by usename" do
-      expect(User.find_for_database_authentication({login: @user.username})).to eq(@user)
+      expect(User.find_for_database_authentication({login: @user.username})).to eq @user
     end
 
     it "can find user by email" do
-      expect(User.find_for_database_authentication({login: @user.email})).to eq(@user)
+      expect(User.find_for_database_authentication({login: @user.email})).to eq @user
     end
   end
 
   it "should have email verified" do
     @user.email = "change@me-minh"
-    expect(@user.email_verified?).to be(false)
+    expect(@user.email_verified?).to be false
   end
 end

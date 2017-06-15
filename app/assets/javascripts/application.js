@@ -16,3 +16,7 @@
 //= require bootstrap/modal
 //= require bootstrap-sprockets
 //= require_tree .
+
+$(document).on("ready page:change", function() {
+  $('.actions').tooltip();
+});
