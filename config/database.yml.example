@@ -1,0 +1,19 @@
+development:
+  adapter: mysql2
+  database: fbt_10dev
+  username: dinhminh
+  password: <%= ENV["DB_PASSWORD"] %>
+  host: localhost
+  encoding: utf8
+  pool: 20
+
+test:
+  adapter: mysql2
+  database: fbt_10test
+  username: dinhminh
+  password: <%= ENV["DB_PASSWORD"] %>
+  host: localhost
+  encoding: utf8
+  pool: 20
+
+production:
