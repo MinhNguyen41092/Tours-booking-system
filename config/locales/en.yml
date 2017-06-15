@@ -16,3 +16,17 @@ en:
   banner:
     intro: "Framgia booking and reservation system"
     btn: "Choose tour"
+  user_form:
+    new: "Register your account"
+    email: "Email"
+    username: "Username"
+    full_name: "Full Name"
+    password: "Password"
+    pass_confirm: "Password Confirmation"
+    edit: "Edit Profile"
+    current_pass: "We need your current password to confirm your changes"
+    leave_blank: "Leave blank if you don't want to change it"
+    chars_min: "characters minimum"
+    del_acc: "Cancel my account"
+  confirm:
+    sure: "Are you sure?"
