@@ -1,0 +1,6 @@
+<% if current_user %>
+  $('#myModal').modal('hide');
+  window.location.reload();
+<% else %>
+  $('#login-errors').html('<div class="alert alert-danger"><%= t "users.login_failed" %></div>');
+<% end %>

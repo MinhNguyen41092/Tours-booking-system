@@ -1,0 +1,39 @@
+<div class="banner">
+  <div class="signup">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="panel panel-info">
+            <div class="panel-heading"><h3><%= t "user_form.new" %></h3></div>
+            <div class="panel-body ">
+              <%= simple_form_for resource, as: resource_name,
+                url: registration_path(resource_name) do |f| %>
+                <%= f.error_notification %>
+
+                <%= f.input :email, label: false, placeholder: t("user_form.email"),
+                  autofocus: true %>
+
+                <%= f.input :username, label: false, placeholder: t("user_form.username") %>
+
+                <%= f.input :full_name, label: false, placeholder: t("user_form.full_name") %>
+
+                <%= f.input :password, label: false, placeholder: t("user_form.password"),
+                  autocomplete: "off" %>
+                <% if @minimum_password_length %>
+                <em>(<%= @minimum_password_length %> characters minimum)</em>
+                <% end %><br />
+
+                <%= f.input :password_confirmation, label: false,
+                  placeholder: t("user_form.pass_confirm"), autocomplete: "off" %>
+
+                <%= f.button :submit, class: "btn btn-info btn-block" %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <img class="banner-image"
+    src="http://res.cloudinary.com/hkfduthj9/image/upload/v1497579325/terminal_m4wifg.jpg">
+</div>

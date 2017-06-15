@@ -1,0 +1,17 @@
+$(document).on('turbolinks:load', function() {
+  $('#review-link').click(function(event) {
+    event.preventDefault();
+    $('#review-form').fadeToggle();
+  });
+
+  $('.my-reviews').click(function(event) {
+    event.preventDefault();
+    $('#user-reviews').fadeToggle();
+  });
+
+  $('.my-orders').click(function(event) {
+    event.preventDefault();
+    $('#user-orders').fadeToggle();
+  });
+
+});

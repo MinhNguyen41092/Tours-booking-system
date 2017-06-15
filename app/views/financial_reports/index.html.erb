@@ -1,0 +1,8 @@
+<div class="container">
+  <h3>Monthly Financial Reports</h3>
+  <hr>
+  Unit: USD
+  <div id="report-list">
+    <%= render partial: "report_list", locals: {reports: @financial_reports} %>
+  </div>
+</div>

@@ -83,4 +83,30 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
+
+  # Setting email
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host: "https://framtour10.herokuapp.com/" }
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.smtp_settings = {
+    address: "smtp.gmail.com",
+    port: 587,
+    domain: "gmail.com",
+    authentication: "plain",
+    user_name: ENV["GMAIL_USERNAME"],
+    password: ENV["GMAIL_PASSWORD"],
+    enable_starttls_auto: true
+  }
+
+  # Setup active merchant
+  config.after_initialize do
+    ActiveMerchant::Billing::Base.mode = :test
+    paypal_options = {
+      login: ENV["PAYPAL_USERNAME"],
+      password: ENV["PAYPAL_PASSWORD"],
+      signature: ENV["PAYPAL_SIGNATURE"]
+    }
+    ::EXPRESS_GATEWAY = ActiveMerchant::Billing::PaypalExpressGateway.new(paypal_options)
+  end
 end

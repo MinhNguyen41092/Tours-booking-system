@@ -9,6 +9,21 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog"
+      aria-labelledby="myModalLabel" aria-hidden="true"></div>
+
+    <div class="wrapper">
+      <%= render "layouts/sidebar" %>
+
+      <div class="content">
+        <%= render "layouts/navigation" %>
+
+        <%= render "layouts/messages" %>
+
+        <%= yield %>
+        <%= render "layouts/footer" %>
+      </div>
+    </div>
+
   </body>
 </html>

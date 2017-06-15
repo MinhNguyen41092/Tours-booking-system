@@ -1,0 +1,48 @@
+<div class="container">
+  <div class="checkout-head">
+    <div class="secure-check">
+      <h3>Secure checkout</h3><br />
+      <h5>Item in cart: <%= @cart.line_items.length %></h5>
+    </div>
+    <div class="order-cost">
+      <h4><%= t "carts.cost" %>:</h4><br />
+      <h3><%= number_to_currency cart_cost(@cart.line_items),
+        unit: Settings.unit, format: "%u%n", precision: 0 %></h3>
+    </div>
+  </div>
+  <div class="panel panel-primary tour-info">
+    <%= simple_form_for @order do |f| %>
+      <%= f.simple_fields_for :line_items do |item| %>
+        <div class="panel-heading"><h4><%= item.object.tour.name %></h4></div>
+        <div class="panel-body ">
+          <%= render partial: "shared/errors", locals: {obj: item.object} %>
+
+          <%= item.hidden_field :tour_id  %>
+
+          <%= item.input :price, readonly: true  %>
+
+          <%= item.input :travelers, readonly: true  %>
+
+          <%= item.input :traveler_name, label: "Lead traveler",
+            input_html: {value: current_user.full_name} %>
+
+          <%= item.input :start_date, as: :date %>
+        </div>
+      <% end %>
+      <div class="panel-heading"><h4>Contact info</h4></div>
+      <div class="panel-body ">
+        <%= render partial: "shared/errors", locals: {obj: @order} %>
+
+        <%= f.input :email, input_html: {value: current_user.email} %>
+
+        <%= f.input :phone_number %>
+
+        <%= f.hidden_field :total_cost, value: cart_cost(@cart.line_items) %>
+
+        <%= f.hidden_field :status, value: :pending %>
+
+        <%= f.button :submit, "Proceed to payment", class: "btn btn-block btn-warning" %>
+      </div>
+    <% end %>
+  </div>
+</div>

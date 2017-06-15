@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="back-shop">
+    <%= link_to tours_path do %>
+      <span class="glyphicon glyphicon-menu-left" aria-hidden="true"></span>
+      <%= t "carts.back_shop" %>
+    <% end %>
+  </div>
+  <%= link_to t("carts.checkout"), new_order_path, class: "btn btn-md btn-warning new-order" %>
+  <div class="row">
+    <% items.each do |item| %>
+      <div class="col-sm-12 well">
+        <div class="thumb">
+          <%= image_tag item.tour.image_url.thumb %>
+        </div>
+        <div class="tour-cart">
+          <%= link_to item.tour.name, tour_path(item.tour) %><br />
+          <% if item.tour.description.length > 55 %>
+            <h6><%= truncate item.tour.description, length: 55 %>
+            <%= link_to t("read_more"), tour_path(item.tour) %></h6>
+          <% else %>
+            <h6><%= item.tour.description %></h6>
+          <% end %>
+          <h6 class="du-lo">
+            <%= t "tours.duration" %>: <%= item.tour.duration %> <%= t "tours.days" %>.<br/>
+            <%= t "tours.location" %>: <%= item.tour.location %>.<br/>
+            <%= t "line_items.adults" %>: <%= item.travelers %>.
+          </h6>
+        </div>
+        <div class="update-item">
+          <%= link_to t("line_items.delete"), item, method: :delete,
+            data: {confirm: t("confirm.sure")} %>
+
+          <%= form_for item, method: :put, remote: true do |f| %>
+            <%= f.number_field :travelers, value: item.travelers %>
+            <%= f.submit t("line_items.travelers"), class:"btn btn-xs btn-warning up-item"%>
+          <% end %>
+        </div>
+        <div class="price-index">
+          <h3><%= number_to_currency item.price,
+            unit: Settings.unit, format: "%u%n", precision: 0 %></h3>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="del-cart">
+    <%= link_to t("carts.delete"), @cart, method: :delete,
+      data: {confirm: t("confirm.sure")}, class: "btn btn-md btn-danger" %>
+  </div>
+  <div class="cart-cost">
+    <h3><%= t "carts.cost" %>: <%= number_to_currency cart_cost(items),
+      unit: Settings.unit, format: "%u%n", precision: 0 %></h3>
+  </div>
+</div>

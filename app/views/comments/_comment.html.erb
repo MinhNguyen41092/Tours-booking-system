@@ -1,0 +1,16 @@
+<% comments.each do |comment| %>
+  <div class="well review-comment-body">
+    <strong><%= comment.user.username %>:</strong> <%= comment.body %>
+    <%= link_to "Reply", "#", id: "comment-#{comment.id}", remote: true %>
+
+    <div id="comment-form-<%= comment.id %>", style="display: none">
+      <%= simple_form_for [comment, Comment.new], remote: true do |f| %>
+        <%= f.error_notification %>
+        <%= f.input :body, as: :text, label: false,
+          placeholder: "Write a reply" %>
+        <%= f.button :submit, "Save", class: "btn btn-sm btn-default" %>
+      <% end %>
+    </div>
+    <%= render partial: "comments/comment", locals: {comments: comment.comments} %>
+  </div>
+<% end %>

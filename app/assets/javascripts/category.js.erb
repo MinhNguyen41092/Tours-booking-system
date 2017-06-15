@@ -1,0 +1,16 @@
+$(document).on('turbolinks:load', function() {
+  $('#button-collapse').on('click', function(event){
+    $('#sidebar').toggleClass('active');
+  });
+
+  $('#adminList').on('click', function(event){
+    $('.collapse').toggleClass('in');
+  });
+
+  $('#category-collapse').on('click', function(event){
+    event.preventDefault();
+    $('.cat-collapse').toggleClass('in');
+  });
+
+
+});

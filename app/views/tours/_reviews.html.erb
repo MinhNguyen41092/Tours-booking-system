@@ -1,0 +1,27 @@
+<% reviews.each do |review| %>
+  <div class="review-wrap">
+    <div class="review-user">
+      <h5><%= review.user.username %></h5><br/>
+      <%= image_tag review.user.avatar.review %>
+    </div>
+    <div class="review-each">
+      <strong><%= review.title %></strong><br/>
+      <%= review.body %>
+    </div>
+  </div>
+  <% if user_signed_in? %>
+    <% if current_user.likes?(review) %>
+      <%= link_to "Unlike", review_unlike_path(review), method: :post,
+        remote: true, class: "btn btn-primary btn-xs" %>
+    <% else %>
+      <%= link_to "Like", review_like_path(review), method: :post,
+        remote: true, class: "btn btn-primary btn-xs" %>
+    <% end %>
+  <% end %>
+  <br />
+  <p id="likes">Likes: <%= review.likers(User).count %></p>
+  <%= link_to "Comment", "#", id: "review-comment-#{review.id}", remote: true %>
+  <%= render partial: "review_comment", locals: {review: review} %>
+  <hr>
+<% end %>
+<div class="review-pag"><%= paginate reviews %></div>

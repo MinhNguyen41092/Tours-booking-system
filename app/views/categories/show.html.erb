@@ -1,0 +1,37 @@
+<div class="container">
+  <h2 class="cat-show"><span class="glyphicon glyphicon-globe"
+    aria-hidden="true"></span>&nbsp<%= @category.name %></h2>
+  <%= paginate @tours.page(params[:page])
+    .per Settings.items_per_pages %>
+  <hr>
+  <div class="row">
+    <% @tours.each do |tour| %>
+      <div class="col-sm-4">
+        <div class="card">
+          <%= link_to image_tag(tour.image_url, class: "card-img-top img-responsive"), tour_path(tour) %>
+          <div class="card-block">
+            <h4 class="text-center"><%= tour.name %></h4>
+            <h3 class="price-card">
+              <%= number_to_currency tour.price,
+                unit: Settings.unit, format: "%u%n", precision: 0 %>
+            </h3>&nbsp&nbsp<%= tour.duration %> <%= t "tours.days" %>
+
+            <% if tour.description.length > 80 %>
+              <h5 class="card-text"><%= truncate tour.description, length: 80 %>
+              <%= link_to t("read_more"), tour_path(tour) %></h5>
+            <% else %>
+              <h5 class="card-text"><%= tour.description %></h5>
+            <% end %>
+
+            <div class="card-cart">
+              <%= link_to line_items_path(tour_id: tour.id), method: :post, class: "btn btn-warning" do %>
+                <span class="glyphicon glyphicon-shopping-cart"
+                  aria-hidden="true"></span> Add to cart
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
