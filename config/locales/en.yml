@@ -1,3 +1,18 @@
 en:
   home:
-    title: Framtour10
+    title: "Framtour10"
+  nav:
+    toggle: "Toggle navigation"
+    cart: "Your Cart"
+    signin: "SIGN IN"
+    signup: "SIGN UP"
+  pages:
+    tours: "Tours"
+  foot-top:
+    care: "CUSTOMER CARE"
+    help: "Help Center"
+    privacy: "Privacy Policy"
+    service: "Online Service"
+  banner:
+    intro: "Framgia booking and reservation system"
+    btn: "Choose tour"
