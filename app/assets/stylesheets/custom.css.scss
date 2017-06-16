@@ -1,2 +1,140 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+
+.navbar-default {
+  background-color: #ffffff;
+  border-color: #ffffff;
+}
+.navbar-default .navbar-brand {
+  color: #242a2b;
+}
+.navbar-default .navbar-brand:hover,
+.navbar-default .navbar-brand:focus {
+  color: #5f5dea;
+}
+.navbar-default .navbar-text {
+  color: #242a2b;
+}
+.navbar-default .navbar-nav > li > a {
+  color: #242a2b;
+}
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #5f5dea;
+}
+.navbar-default .navbar-nav > .active > a,
+.navbar-default .navbar-nav > .active > a:hover,
+.navbar-default .navbar-nav > .active > a:focus {
+  color: #5f5dea;
+  background-color: #ffffff;
+}
+.navbar-default .navbar-nav > .open > a,
+.navbar-default .navbar-nav > .open > a:hover,
+.navbar-default .navbar-nav > .open > a:focus {
+  color: #5f5dea;
+  background-color: #ffffff;
+}
+.navbar-default .navbar-toggle {
+  border-color: #ffffff;
+}
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: #ffffff;
+}
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #242a2b;
+}
+.navbar-default .navbar-collapse,
+.navbar-default .navbar-form {
+  border-color: #242a2b;
+}
+.navbar-default .navbar-link {
+  color: #242a2b;
+}
+.navbar-default .navbar-link:hover {
+  color: #5f5dea;
+}
+
+@media (max-width: 767px) {
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+    color: #242a2b;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    color: #5f5dea;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:hover,
+  .navbar-default .navbar-nav .open .dropdown-menu > .active > a:focus {
+    color: #5f5dea;
+    background-color: #ffffff;
+  }
+}
+
+.navbar {
+  margin-bottom: 0px;
+}
+
+.badge {
+  vertical-align: top;
+  background-color: #5f5dea;
+}
+
+.navbar-btn {
+  margin-top: 10px;
+  margin-right: 5px;
+}
+
+.footer {
+  margin-top: 0px;
+  border-top: 1px solid #eaeaea;
+  color: #777;
+}
+
+.banner {
+  width: 100%;
+  display: block;
+  position: relative;
+}
+
+.banner > .banner-image {
+  width: 100%;
+  display: block;
+}
+
+.elements {
+  position: absolute;
+  left: 25%;
+  top: 20%;
+}
+
+.intro {
+  color: white;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.dark {
+  background-color: #444444;
+  color: white;
+}
+
+.care {
+  margin-bottom: 5px;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.menu {
+  list-style: none;
+  display: inline-block;
+  padding-left: 5px;
+}
+
+.menu > li > a {
+  color: white;
+}
+
+a:-webkit-any-link {
+  text-decoration: none ;
+}
