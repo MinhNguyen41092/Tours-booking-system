@@ -1,0 +1,26 @@
+<div class="banner">
+  <div class="signup">
+    <div class="panel panel-info">
+      <div class="panel-heading"><h3><%= t "user_form.wb" %></h3></div>
+      <div class="panel-body ">
+        <div id="login-errors"></div>
+        <%= simple_form_for resource, as: resource_name,
+          url: session_path(resource_name), remote: true do |f| %>
+
+          <%= f.input :login, label: false, placeholder: t("user_form.email"),
+            autofocus: true %>
+
+          <%= f.input :password, label: false, placeholder: t("user_form.password"),
+            autocomplete: "off" %>
+
+          <%= button_tag type: 'submit', class: "btn btn-info btn-block" do %>
+            <%= t "user_form.login" %>
+          <% end %>
+        <% end %>
+        <%= render "devise/shared/links" %>
+      </div>
+    </div>
+  </div>
+  <img class="banner-image"
+    src="http://res.cloudinary.com/hkfduthj9/image/upload/v1497752750/4_xzij6w.jpg">
+</div>

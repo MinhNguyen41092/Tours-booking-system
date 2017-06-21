@@ -1,0 +1,17 @@
+<div class="container">
+  <div class="panel panel-info pass-reset">
+    <div class="panel-heading"><%= t "user_form.resend_confirmation" %></div>
+    <div class="panel-body ">
+      <%= simple_form_for resource, as: resource_name,
+        url: confirmation_path(resource_name) do |f| %>
+        <%= f.error_notification %>
+        <%= f.full_error :confirmation_token %>
+
+        <%= f.input :email, required: true, autofocus: true %>
+
+        <%= f.button :submit, t("user_form.resend_confirmation"),
+          class: "btn btn-info btn-block" %>
+      <% end %>
+    </div>
+  </div>
+</div>
