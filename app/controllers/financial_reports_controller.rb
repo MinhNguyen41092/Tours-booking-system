@@ -1,4 +1,5 @@
 class FinancialReportsController < ApplicationController
+  include CartOrder
   before_action :verify_admin
   before_action :load_financial_report, except: [:index, :new, :create]
 
@@ -13,11 +14,12 @@ class FinancialReportsController < ApplicationController
 
   def create
     @financial_report = FinancialReport.new report_params
-    @financial_report.financial_report = current_financial_report
+    @financial_report.user = current_user
+    @financial_report.revenue = revenue
     @financial_report.net_income = @financial_report.revenue - @financial_report.cost
     if @financial_report.save
       flash[:success] = t "reports.created"
-      redirect_to @financial_report
+      redirect_to financial_reports_path
     else
       render :new
     end
@@ -26,6 +28,8 @@ class FinancialReportsController < ApplicationController
   def edit; end
 
   def update
+    @financial_report.revenue = revenue
+    @financial_report.net_income = @financial_report.revenue - @financial_report.cost
     if @financial_report.update report_params
       flash[:success] = t "reports.updated"
       redirect_to financial_reports_path

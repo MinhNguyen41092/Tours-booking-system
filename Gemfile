@@ -34,6 +34,7 @@ gem "font-awesome-rails"
 gem "activemerchant"
 gem "materialize-sass"
 gem "socialization"
+gem "social-share-button"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 3.0"
 # Use ActiveModel has_secure_password

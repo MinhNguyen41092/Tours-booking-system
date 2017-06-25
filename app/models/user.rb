@@ -47,7 +47,7 @@ class User < ApplicationRecord
       if user.nil?
         user = User.new(
           username: auth.extra.raw_info.name,
-          email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
+          email: auth.info.email ? auth.info.email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
           password: "password",
           remote_avatar_url: auth.info.image
         )

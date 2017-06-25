@@ -17,6 +17,7 @@
 //= require bootstrap-sprockets
 //= require jquery.raty
 //= require ratyrate
+//= require social-share-button
 //= require_tree .
 
 $(document).on("ready page:change", function() {

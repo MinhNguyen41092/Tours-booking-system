@@ -7,8 +7,6 @@
 
       <%= f.input :cost, as: :decimal %>
 
-      <%= f.input :revenue, as: :decimal %>
-
       <%= f.submit @financial_report.new_record? ? t("reports.new") : t("reports.update"),
         class: "btn btn-primary btn-block cat-submit" %>
     <% end %>

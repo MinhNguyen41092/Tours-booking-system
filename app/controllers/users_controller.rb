@@ -15,7 +15,6 @@ class UsersController < ApplicationController
 
   def update
     if @user.update user_params
-      sign_in(@user == current_user ? @user : current_user, bypass: true)
       redirect_to @user, notice: t("users.update_success")
     else
       render :edit

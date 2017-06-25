@@ -23,6 +23,14 @@ module CartOrder
     end
   end
 
+  def revenue
+    revenue = 0
+    Order.sold.each do |order|
+      revenue += order.total_cost
+    end
+    revenue
+  end
+
   private
 
   def set_cart

@@ -54,6 +54,9 @@
           <% end %>
         </div>
       </div>
+      <div class="share">
+        <%= social_share_button_tag(@tour.name, allow_sites: %w(twitter facebook google_plus pinterest)) %>
+      </div>
     </div>
   </div>
 </div>

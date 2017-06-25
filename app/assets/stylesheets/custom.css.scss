@@ -1,5 +1,6 @@
 @import 'bootstrap-sprockets';
 @import 'bootstrap';
+@import 'social-share-button';
 
 .navbar-default {
   background-color: #ff5722;
@@ -375,6 +376,14 @@ a:-webkit-any-link {
   border: 2px solid #FF7F50;
   width: 100%;
   height: 100px;
+}
+
+.share {
+  text-align: center;
+  border: 2px solid #ccc;
+  width: 100%;
+  margin-top: 50px;
+  padding-top: 10px;
 }
 
 .price > h3 {

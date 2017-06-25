@@ -2,7 +2,13 @@
   <div class="well review-comment-body">
     <strong><%= comment.user.username %>:</strong> <%= comment.body %>
     <%= link_to "Reply", "#", id: "comment-#{comment.id}", remote: true %>
-
+    <% if user_signed_in? %>
+      <% if current_user.is_admin %>
+        <%= link_to comment, method: :delete, data: {confirm: t("confirm.sure")} do %>
+          <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+        <% end %>
+      <% end %>
+    <% end %>
     <div id="comment-form-<%= comment.id %>", style="display: none">
       <%= simple_form_for [comment, Comment.new], remote: true do |f| %>
         <%= f.error_notification %>

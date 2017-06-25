@@ -7,4 +7,5 @@ class Order < ApplicationRecord
   enum status: [:pending, :paid, :canceled]
 
   scope :newest, -> {order(created_at: :desc)}
+  scope :sold, -> {where(status: :paid)}
 end
