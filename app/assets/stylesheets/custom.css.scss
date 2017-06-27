@@ -170,3 +170,33 @@ a:-webkit-any-link {
 .modal-footer > a {
   float: left;
 }
+
+.avatar {
+  text-align: center;
+}
+
+.avatar > img {
+  border-radius: 100px;
+}
+
+.avatar > a > img {
+  border-radius: 100px;
+}
+
+.profile {
+  display: inline-block;
+  margin-left: 40px;
+  margin-bottom: 20px;
+}
+
+.container {
+  margin-top: 30px;
+}
+
+.icon-trash {
+  color: red;
+}
+
+.pag {
+  text-align: center;
+}

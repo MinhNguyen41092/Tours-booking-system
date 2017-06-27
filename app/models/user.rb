@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  mount_uploader :avatar, ImageUploader
   TEMP_EMAIL_PREFIX = "change@me"
   TEMP_EMAIL_REGEX = /\Achange@me/
   devise :database_authenticatable, :registerable, :omniauthable,
@@ -7,6 +8,7 @@ class User < ApplicationRecord
   attr_accessor :logins
   has_one :identity
   has_one :cart
+  has_one :identity, dependent: :destroy
   has_many :comments
   has_many :orders
   has_many :reviews

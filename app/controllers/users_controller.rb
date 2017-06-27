@@ -1,9 +1,11 @@
 class UsersController < ApplicationController
-  before_action :load_user, except: [:new, :create]
-  before_filter :authenticate_user!
+  before_action :load_user, except: [:index, :new, :create]
+  before_action :authenticate_user!
+  before_action :verify_admin, only: :index
 
   def index
-    @users = User.all
+    @users = User.all.page(params[:page])
+      .per Settings.items_per_pages
   end
 
   def show
@@ -11,7 +13,7 @@ class UsersController < ApplicationController
 
   def update
     if @user.update user_params
-      sign_in(@user == current_user ? @user : current_user, bypass: true)
+      sign_in @user
       redirect_to @user, notice: t("users.update_success")
     else
       render :edit
@@ -29,6 +31,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def destroy
+    if @user.destroy
+      flash[:success] = t "users.deleted"
+    else
+      flash[:danger] = t "users.delete_failed"
+    end
+    redirect_to :back
+  end
+
   private
   def load_user
     @user = User.find_by id: params[:id]
@@ -38,7 +49,7 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    accessibles = [:username, :email]
+    accessibles = [:username, :email, :avatar, :full_name]
     accessibles << [:password, :password_confirmation ] unless params[:user][:password].blank?
     params.require(:user).permit accessibles
   end

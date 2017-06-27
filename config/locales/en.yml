@@ -41,8 +41,10 @@ en:
   confirm:
     sure: "Are you sure?"
   users:
+    all: "All users"
     login_failed: "Incorrect information"
-    edit: "Edit settings"
+    edit: "Edit Profile"
+    show: "Your Profile"
     logout: "Logout"
     no_user: "There is no such user"
     no_info: "Can not login by your account, please register manually"
@@ -52,3 +54,10 @@ en:
     update_success: "Your profile was successfully updated."
     update_failed: "Invalid input"
     finish_signup: "finish_signup"
+    login_fb: "Login with Facebook"
+    login_twt: "Login with Twitter"
+    login_google: "Login with Google"
+    forgot_pass: "Forgot your password?"
+    profile: "Profile"
+    deleted: "You have deleted your account"
+    delete_failed: "Could not delete account"
