@@ -5,7 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby "2.4.0"
 gem "rails", "~> 5.0.3"
 gem "puma", "~> 3.0"
 gem "sass-rails", "~> 5.0"
@@ -26,6 +25,10 @@ gem "mini_magick"
 gem "roo"
 gem "devise"
 gem "simple_form"
+gem "omniauth"
+gem "omniauth-twitter"
+gem "omniauth-facebook"
+gem "omniauth-google-oauth2"
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 3.0"
 # Use ActiveModel has_secure_password
@@ -36,9 +39,15 @@ gem "simple_form"
 
 group :development, :test do
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
+  gem "rspec-rails", "~> 3.5"
   gem "byebug", platform: :mri
   gem "mysql2"
   gem "listen", "~> 3.0.5"
+end
+
+group :test do
+  gem "shoulda-matchers", git: "https://github.com/thoughtbot/shoulda-matchers.git", branch: "rails-5"
+  gem "fabrication"
 end
 
 group :development do

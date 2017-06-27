@@ -1,11 +1,18 @@
 Rails.application.routes.draw do
 
   devise_for :users, controllers: {
-    sessions: "sessions"
+    sessions: "sessions",
+    registrations: "registrations",
+    omniauth_callbacks: "omniauth_callbacks"
   }
+
+  resources :users, except: [:new, :create]
   devise_scope :user do
-    get "/register", to: "devise/registrations#new", as: :register
+    get "/register", to: "registrations#new", as: :register
     get "/signin", to: "sessions#new", as: :signin
   end
+  match "/users/:id/finish_signup", to: "users#finish_signup",
+    via: [:get, :patch], as: :finish_signup
+
   root to: "static_pages#home"
 end
