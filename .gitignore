@@ -48,3 +48,7 @@ bower.json
 /config/application.yml
 
 public/uploads/
+
+coverage
+spec/support/
+uploads/

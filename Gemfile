@@ -42,13 +42,17 @@ group :development, :test do
   # Call "byebug" anywhere in the code to stop execution and get a debugger console
   gem "rspec-rails", "~> 3.5"
   gem "byebug", platform: :mri
-  gem "mysql2"
+  gem "mysql2", "~>0.3.21"
   gem "listen", "~> 3.0.5"
 end
 
 group :test do
   gem "shoulda-matchers", git: "https://github.com/thoughtbot/shoulda-matchers.git", branch: "rails-5"
   gem "fabrication"
+  gem "rails-controller-testing"
+  gem "capybara"
+  gem "simplecov", require: false
+  gem "faker"
 end
 
 group :development do

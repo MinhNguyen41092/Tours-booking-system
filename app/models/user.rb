@@ -5,7 +5,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable, :omniauthable,
     :recoverable, :rememberable, :trackable, :validatable, :confirmable
   validates_format_of :email, without: TEMP_EMAIL_REGEX, on: :update
-  attr_accessor :logins
+  attr_accessor :login
   has_one :identity
   has_one :cart
   has_one :identity, dependent: :destroy
