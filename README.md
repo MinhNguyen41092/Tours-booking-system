@@ -1,4 +1,4 @@
-# Tour bokking project:
+# Tour booking project:
 [Demo](https://framtour10.herokuapp.com/)
 
 ## Project requirements:
