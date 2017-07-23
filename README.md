@@ -1,24 +1,18 @@
-# README
+# Tour bokking project:
+[Demo](https://framtour10.herokuapp.com/)
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Project requirements:
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Authentication system (Devise).
+* Login by social media accounts.
+* Display tours, manage tours (admin).
+* Add tours to cart.
+* Order tours.
+* Send mail to user after submitting tours.
+* Pay tour by Paypal.
+* Like tours.
+* Search tours.
+* Write reviews for tours.
+* Comment under each reviews.
+* Like reviews.
+* Improve UI.
