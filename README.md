@@ -15,4 +15,4 @@
 * Write reviews for tours.
 * Comment under each reviews.
 * Like reviews.
-* Improve UI.
+* Improved UI.
